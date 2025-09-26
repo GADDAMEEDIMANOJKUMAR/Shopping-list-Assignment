@@ -4,7 +4,7 @@ import AddItemForm from "./Compnents/AddItemForm";
 import ShoppingList from "./Compnents/ShoppingList";
 
 // ✅ Use deployed backend URL
-const API_BASE_URL = "https://shopping-list-assignment.onrender.com/api/items";
+const API_BASE_URL = process.env.API_BASE_URL || 5000;
 
 function App() {
   const [items, setItems] = useState([]);
