@@ -3,6 +3,9 @@ import axios from "axios";
 import AddItemForm from "./Compnents/AddItemForm";
 import ShoppingList from "./Compnents/ShoppingList";
 
+// ✅ Use deployed backend URL
+const API_BASE_URL = "https://shopping-list-assignment.onrender.com/api/items";
+
 function App() {
   const [items, setItems] = useState([]);
 
@@ -12,7 +15,7 @@ function App() {
 
   const fetchItems = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/items");
+      const response = await axios.get(API_BASE_URL);
       setItems(response.data);
     } catch (error) {
       console.error("Error fetching items:", error);
@@ -21,7 +24,7 @@ function App() {
 
   const handleAddItem = async (newItem) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/items", newItem);
+      const response = await axios.post(API_BASE_URL, newItem);
       setItems([...items, response.data]);
     } catch (error) {
       console.error("Error adding item:", error);
@@ -30,7 +33,7 @@ function App() {
 
   const handleUpdateItem = async (id, updatedItem) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/items/${id}`, updatedItem);
+      const response = await axios.put(`${API_BASE_URL}/${id}`, updatedItem);
       setItems(items.map(item => item.id === id ? response.data : item));
     } catch (error) {
       console.error("Error updating item:", error);
@@ -39,7 +42,7 @@ function App() {
 
   const handleDeleteItem = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/items/${id}`);
+      await axios.delete(`${API_BASE_URL}/${id}`);
       setItems(items.filter(item => item.id !== id));
     } catch (error) {
       console.error("Error deleting item:", error);
