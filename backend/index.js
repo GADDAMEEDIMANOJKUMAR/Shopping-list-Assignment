@@ -7,7 +7,7 @@ const PORT = 5000;
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Allow frontend access
+app.use(cors({ origin: "*" })); // Allow frontend access
 
 // Routes
 const apiRoutes = require("./routes/app");
